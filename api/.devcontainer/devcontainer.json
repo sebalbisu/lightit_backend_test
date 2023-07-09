@@ -1,0 +1,29 @@
+{
+    "name": "vscode_lightit_api",
+    "service": "api_dev",
+    "dockerComposeFile": [
+        "../../docker-compose.yml"
+    ],
+    "overrideCommand": true,
+    "runServices": [
+        "db"
+    ],
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "xdebug.php-debug",
+                "bmewburn.vscode-intelephense-client",
+                "open-southeners.laravel-pint",
+                // "junstyle.php-cs-fixer",
+                "neilbrayfield.php-docblocker",
+                "calebporzio.better-phpunit",
+                // "amiralizadeh9480.laravel-extra-intellisense",
+                "codingyu.laravel-goto-view",
+                // "stef-k.laravel-goto-controller",
+                "austenc.laravel-blade-spacer",
+                "dominicvonk.php-tinker"
+            ]
+        }
+    }
+}

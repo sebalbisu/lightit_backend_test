@@ -1,0 +1,73 @@
+version: '3.8'
+services:
+
+  api_dev:
+    image: lightit-api-dev:1.0.0
+    build:
+      context: ./api
+      dockerfile: .devcontainer/Dockerfile
+      target: dev
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    depends_on:
+      - db
+      - mailhog
+    links:
+      - "db:database"
+      - "mailhog:mailhog"
+    volumes:
+      - ./api:/workspace:cached
+      - ./api:/app
+    command: "php artisan serve --host=0.0.0.0 --port=8000"
+
+  api:
+    image: lightit-api-qa:1.0.0
+    build:
+      context: ./api
+      dockerfile: .devcontainer/Dockerfile
+      target: qa
+    ports:
+      - "8001:8001"
+    working_dir: /app
+    volumes:
+      - ./api-data/storage/app:/app/storage/app
+    depends_on:
+      - db
+      - mailhog
+    links:
+      - "db:database"
+      - "mailhog:mailhog"
+    command: "php artisan serve --host=0.0.0.0 --port=8001"
+
+  jobs:
+    image: lightit-api-qa:1.0.0
+    working_dir: /app
+    volumes:
+      - ./api-data/storage/app:/app/storage/app
+    depends_on:
+      - api
+    links:
+      - "db:database"
+      - "mailhog:mailhog"
+    command: "php artisan queue:work"
+
+  db:
+    image: mysql:8.0.33
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: lightit
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: 'mailhog'
+    ports:
+      - "1025:1025"
+      - "8025:8025"

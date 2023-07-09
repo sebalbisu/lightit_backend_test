@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "aa461057-ac69-454e-a79f-57921bd469f6",
+		"name": "api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19716082"
+	},
+	"item": [
+		{
+			"name": "test-helpers",
+			"item": [
+				{
+					"name": "user-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/test-helper/user",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"test-helper",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-deleteAll",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/test-helper/user",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"test-helper",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/test-helper/user/:user_id",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"test-helper",
+								"user",
+								":user_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/test-helper/user/:user_id",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"test-helper",
+								"user",
+								":user_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Fulanito",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "cosme@fulanito.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "123456782",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/home/seba/src/studies/php/lightit_backend_test/api-postman/profile.jpg"
+						},
+						{
+							"key": "password",
+							"value": "Secret010$",
+							"type": "text"
+						},
+						{
+							"key": "notify_sms",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{api_url}}/register",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
