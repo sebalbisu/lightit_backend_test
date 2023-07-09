@@ -1,2 +1,1 @@
-/mysql/data/*
-/api-data/storage/*
+/mysql/data/**
