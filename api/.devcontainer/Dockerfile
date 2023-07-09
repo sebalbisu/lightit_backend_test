@@ -48,8 +48,12 @@ FROM base as qa
 WORKDIR /app
 
 COPY . /app
+
 RUN cp .env.qa .env
+
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install
+
+RUN php artisan storage:link
 
 RUN composer exec "pint --test"
 
